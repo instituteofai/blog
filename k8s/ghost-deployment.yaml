@@ -18,8 +18,15 @@ spec:
       - name: blog
         image: ghost:2.6-alpine
         imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /var/lib/ghost/content
+          name: content
         ports:
         - containerPort: 2368
         env:
         - name: url
           value: http://my-blog.com
+      volumes:
+      - name: content
+        persistentVolumeClaim:
+          claimName: blog-content
