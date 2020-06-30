@@ -15,7 +15,7 @@ spec:
         app: blog
     spec:
       containers:
-      - name: blog
+      - name: blog-content
         image: ghost:2.6-alpine
         imagePullPolicy: Always
         volumeMounts:
