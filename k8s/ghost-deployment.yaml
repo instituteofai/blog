@@ -16,17 +16,31 @@ spec:
     spec:
       containers:
       - name: blog-content
-        image: ghost:2.6-alpine
+        image: ghost
         imagePullPolicy: Always
-        volumeMounts:
-        - mountPath: /var/lib/ghost/content
-          name: content
         ports:
         - containerPort: 2368
         env:
         - name: url
           value: http://blog.instituteofai.com
-      volumes:
-      - name: content
-        persistentVolumeClaim:
-          claimName: blog-content
+        - name: mail__transport
+          value: SMTP
+        - name: mail__options__service
+          value: Mailgun
+        - name: mail__options__auth__user
+          value: <mailgun_user>
+        - name: mail__options__auth__pass
+          value: <mailgun_password>
+        - name: database__client
+          value: mysql
+        - name: database__connection__host
+          value: $(MYSQL_SERVICE_HOST)
+        - name: database__connection__port
+          value: $(MYSQL_SERVICE_PORT)
+        - name: database__connection__user
+          value: <mysql_user>
+        - name: database__connection__password
+          value: <mysql_password>
+        - name: database__connection__database
+          value: ghost
+
