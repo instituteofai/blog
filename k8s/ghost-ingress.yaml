@@ -4,7 +4,7 @@ metadata:
   name: iai-ingress
 spec:
   rules:
-  - host: blog-alpha.instituteofai.com
+  - host: blog.instituteofai.com
   http:
     paths:
     - backend:
