@@ -18,6 +18,9 @@ spec:
       - name: blog-content
         image: ghost
         imagePullPolicy: Always
+        volumeMounts:
+        - mountPath: /var/lib/ghost/content
+          name: content
         ports:
         - containerPort: 2368
         env:
@@ -43,4 +46,8 @@ spec:
           value: <mysql_password>
         - name: database__connection__database
           value: ghost
+      volumes:
+      - name: content
+        persistentVolumeClaim:
+          claimName: blog-content
 
