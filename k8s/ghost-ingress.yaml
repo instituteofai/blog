@@ -12,6 +12,9 @@ spec:
   - hosts:
       - certifications.instituteofai.com
     secretName: iai-cert-verify-tls
+  - hosts:
+      - api.ftbl.world
+    secretName: api-ftbl-world-tls
   rules:
   - host: blog.instituteofai.com
     http:
@@ -27,3 +30,10 @@ spec:
         backend:
           serviceName: iai-certificate-verifier
           servicePort: 8888
+  - host: api.ftbl.world
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ftbl-server-service
+          servicePort: 8090
